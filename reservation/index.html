@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
     />
-    <title>Motocicletas</title>
+    <title>Reservaciones</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -31,13 +31,13 @@
               <a class="nav-link" href="../category">Categorias</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">Motocicletas</a>
+              <a class="nav-link" href="#">Motocicletas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../client">Clientes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../reservation">Reservaciones</a>
+              <a class="nav-link active" href="../reservation">Reservaciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../message">Mensajes</a>
@@ -60,22 +60,23 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Marca</th>
-            <th scope="col">Año</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Categoria</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">Fecha inicio</th>
+            <th scope="col">Fecha devolución</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Motocicleta</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Puntuación</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Yamaha FZ-16</td>
-            <td>Yamaha</td>
-            <td>2015</td>
+            <td>12-10-2022</td>
+            <td>20-10-2022</td>
+            <td>Bueno</td>
             <td>Motocicleta deportiva</td>
             <td>Usada</td>
+            <td>4.6</td>
             <td>
               <button type="button" class="btn btn-primary">Actualizar</button>
               <button type="button" class="btn btn-danger">Eliminar</button>
@@ -89,7 +90,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5">Agregar Motocicleta</h1>
+            <h1 class="modal-title fs-5">Agregar reservaciones</h1>
             <button
               type="button"
               class="btn-close"
@@ -103,56 +104,63 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="name"
-                  name="name"
+                  id="startDate"
+                  name="startDate"
                   placeholder=""
                 />
-                <label for="name">Nombre</label>
+                <label for="startDate">Fecha de inicio</label>
               </div>
               <div class="form-floating mb-3">
                 <input
                   type="text"
                   class="form-control"
-                  id="marca"
-                  name="marca"
+                  id="devolutionDate"
+                  name="devolutionDate"
                   placeholder=""
                 />
-                <label for="marca">Marca</label>
+                <label for="devolutionDate">Fecha de devolución</label>
               </div>
               <div class="form-floating mb-3">
                 <input
                   type="text"
                   class="form-control"
-                  id="year"
-                  name="year"
+                  id="status"
+                  name="status"
                   placeholder=""
                 />
-                <label for="year">Año</label>
+                <label for="status">Estado</label>
               </div>
               <div class="form-floating mb-3">
                 <input
                   type="text"
                   class="form-control"
-                  id="description"
-                  name="description"
+                  id="motorbike"
+                  name="motorbike"
                   placeholder=""
                 />
-                <label for="description">Descripción</label>
+                <label for="motorbike">Motocicleta</label>
               </div>
               <div class="form-floating mb-3">
                 <input
                   type="text"
                   class="form-control"
-                  id="category"
-                  name="category"
+                  id="client"
+                  name="client"
+                  placeholder=""
+                /><label for="client">Cliente</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="score"
+                  name="score"
                   placeholder=""
                 />
-                <label for="category">Categoria</label>
+                <label for="score">Puntuación</label>
               </div>
               <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary">
-                  Guardar
-                </button>
+                <button type="button" class="btn btn-primary">Guardar</button>
               </div>
             </form>
           </div>
@@ -160,6 +168,11 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </body>
 </html>
