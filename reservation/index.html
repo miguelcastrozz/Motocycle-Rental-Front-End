@@ -28,16 +28,16 @@
         <div class="collapse navbar-collapse" id="nav-bar">
           <ul class="navbar-nav me-auto mb-2 mb-xl-0">
             <li class="nav-item">
-              <a class="nav-link" href="../category">Categorias</a>
+              <a class="nav-link" href="../category">Categorías</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Motocicletas</a>
+              <a class="nav-link" href="../motorcycle">Motocicletas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../client">Clientes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="../reservation">Reservaciones</a>
+              <a class="nav-link active" href="#">Reservaciones</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../message">Mensajes</a>
@@ -56,10 +56,11 @@
             <th scope="col">#</th>
             <th scope="col">Fecha inicio</th>
             <th scope="col">Fecha devolución</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Motocicleta</th>
             <th scope="col">Cliente</th>
+            <th scope="col">Motocicleta</th>
             <th scope="col">Puntuación</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -111,13 +112,13 @@
                 <label for="status">Estado</label>
               </div>
               <select class="form-select my-1" id="motorbike">
-                <option selected>Selecciona una moto</option>
+                <option selected value>Selecciona una moto</option>
               </select>
               <select class="form-select my-1" id="client">
-                <option selected>Selecciona un cliente</option>
+                <option selected value>Selecciona un cliente</option>
               </select>
               <select class="form-select my-1" id="score">
-                <option selected>Selecciona una puntuación</option>
+                <option selected value>Selecciona una puntuación</option>
               </select>
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary">Guardar</button>

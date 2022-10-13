@@ -42,6 +42,7 @@ function filledTable(data) {
         tBodyContent += `<td>${data[i].client.name}</td>`;
         tBodyContent += `<td>${data[i].motorbike.name}</td>`;
         tBodyContent += `<td>${data[i].score.name}</td>`;
+        tBodyContent += `<td>${data[i].status}</td>`;
         tBodyContent += "<td>";
         tBodyContent += `<button type='button' class='btn btn-primary btn-update' value='${data[i].idReservation}'>Actualizar</button>`;
         tBodyContent += `<button type='button' class='btn btn-danger btn-delete' value='${data[i].idReservation}'>Eliminar</button>`;
@@ -123,6 +124,15 @@ function setDataForm(data) {
     $("#score").val(data.score.id);
 }
 
+function setDataEmpty() {
+    id = null;
+    $("#startDate").val("");
+    $("#devolutionDate").val("");
+    $("#client").val("");
+    $("#motorbike").val("");
+    $("#score").val("");
+}
+
 function filledSelect(data, select) {
     for (let i = 0; i < data.length; i++) {
         $(`${select}`).append($('<option>', {
@@ -131,3 +141,7 @@ function filledSelect(data, select) {
         }));
     }
 }
+
+$("#modal-form").on("hidden.bs.modal", function(){
+    setDataEmpty();
+})
