@@ -88,7 +88,16 @@ function listeners() {
   })
 }
 
-function setDataToForm(data){
+function setDataToForm(data) {
   id = data.idMessage;
   $("#messageText").val(data.messageText);
 }
+
+function setDataEmpty() {
+  id = null;
+  $("#messageText").val("");
+}
+
+$("#modal-form").on("hidden.bs.modal", function(){
+  setDataEmpty();
+})
