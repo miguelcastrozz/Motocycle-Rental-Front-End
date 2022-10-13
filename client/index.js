@@ -29,8 +29,8 @@ function filledTable(data) {
       tBodyContent += `<td>${data[i].email}</td>`;
       tBodyContent += `<td>${data[i].age}</td>`;
       tBodyContent += "<td>";
-      tBodyContent += `<button type='button' class='btn btn-primary btn-update' value='${data[i].id}'>Actualizar</button>`;
-      tBodyContent += `<button type='button' class='btn btn-danger btn-delete' value='${data[i].id}'>Eliminar</button>`;
+      tBodyContent += `<button type='button' class='btn btn-primary btn-update' value='${data[i].idClient}'>Actualizar</button>`;
+      tBodyContent += `<button type='button' class='btn btn-danger btn-delete' value='${data[i].idClient}'>Eliminar</button>`;
       tBodyContent += "</td>";
       tBodyContent += "</tr>";
     }
@@ -42,10 +42,10 @@ $("form").on("submit", function (e) {
     let url = '';
     e.preventDefault();
     let data = {
-      id: id,
+      idClient: id,
       name: $("#name").val(),
       email: $("#email").val(),
-      password: $("password").val(),
+      password: $("#password").val(),
       age: $("#age").val()
     };
     if(isUpdated){
@@ -95,7 +95,7 @@ function listeners() {
 }
 
 function setDataToForm(data){
-    id = data.id;
+    id = data.idClient;
     $("#name").val(data.name);
     $("#email").val(data.email);
     $("#password").val(data.password);
