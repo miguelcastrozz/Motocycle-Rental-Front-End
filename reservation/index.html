@@ -80,46 +80,57 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form class="needs-validation" novalidate>
               <div class="form-floating mb-3">
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   id="startDate"
                   name="startDate"
-                  placeholder=""
+                  placeholder="" required
                 />
                 <label for="startDate">Fecha de inicio</label>
+                <div class="invalid-feedback">
+                  Por favor selecciona una fecha.
+                </div>
               </div>
               <div class="form-floating mb-3">
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   id="devolutionDate"
                   name="devolutionDate"
-                  placeholder=""
+                  placeholder="" required
                 />
                 <label for="devolutionDate">Fecha de devolución</label>
+                <div class="invalid-feedback">
+                  Por favor selecciona una fecha.
+                </div>
               </div>
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="status"
-                  name="status"
-                  placeholder=""
-                />
-                <label for="status">Estado</label>
+              <div>
+                <select class="form-select my-1" id="motorbike" required>
+                  <option selected value>Selecciona una moto</option>
+                </select>
+                <div class="invalid-feedback">
+                  Por favor selecciona una moto.
+                </div>
               </div>
-              <select class="form-select my-1" id="motorbike">
-                <option selected value>Selecciona una moto</option>
-              </select>
-              <select class="form-select my-1" id="client">
-                <option selected value>Selecciona un cliente</option>
-              </select>
-              <select class="form-select my-1" id="score">
-                <option selected value>Selecciona una puntuación</option>
-              </select>
+              <div>
+                <select class="form-select my-1" id="client" required>
+                  <option selected value>Selecciona un cliente</option>
+                </select>
+                <div class="invalid-feedback">
+                  Por favor selecciona un cliente.
+                </div>
+              </div>
+              <div>
+                <select class="form-select my-1" id="score" required>
+                  <option selected value>Selecciona una puntuación</option>
+                </select>
+                <div class="invalid-feedback">
+                  Por favor selecciona una puntuación.
+                </div>
+              </div>
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
@@ -135,6 +146,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="../main.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
