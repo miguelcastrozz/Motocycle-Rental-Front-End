@@ -61,14 +61,14 @@ $("form").on("submit", function (e) {
 $(".btn-modal").on("click", function(){
   isUpdated = false;
   id = null;
-  $(".modal-title").html("Agregar categoria")
+  $(".modal-title").html("Agregar mensaje")
   $("#modal-form").modal("show"); //show, hide, toggle
 })
 
 function listeners() {
   $(".btn-update").on("click", function (e) {
     isUpdated = true;
-    $(".modal-title").html("Actualizar categoria")
+    $(".modal-title").html("Actualizar mensaje")
     let id = e.target.value;
     getAjax("GET", URL + `Message/${id}`, "").done(function (response) {
       setDataToForm(response);
