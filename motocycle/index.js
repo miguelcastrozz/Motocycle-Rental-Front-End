@@ -11,6 +11,7 @@ $(document).ready(function () {
     .done(function (response) {
       filledSelectCategory(response);
     });
+  fillSelectYear();
 });
 
 function getAjax(type, url, data) {
@@ -126,6 +127,15 @@ function filledSelectCategory(data){
       value: data[i].id,
       text : data[i].name 
     }));
+  }
+}
+
+function fillSelectYear() {
+  for (let i = 2000; i <= 2023; i++) {
+    $("#year").append($('<option>', {
+      value: i,
+      text : i
+    }))
   }
 }
 

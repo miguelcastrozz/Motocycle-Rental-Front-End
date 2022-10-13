@@ -112,23 +112,15 @@
                   Por favor completa este campo (Caracteres: 5-45)
                 </div>
               </div>
-              <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  min="2000"
-                  max="9999"
-                  class="form-control"
-                  id="year"
-                  name="year"
-                  placeholder=""
-                  required
-                />
-                <label for="year">Año</label>
+              <div>
+                <select class="form-select my-1" id="year" name="year" required>
+                  <option selected value>Selecciona una año</option>
+                </select>
                 <div class="invalid-feedback">
-                  Por favor completa este campo (Año 2000-9999)
+                  Por favor selecciona una opción.
                 </div>
               </div>
-              <div class="form-floating mb-3">
+              <div class="form-floating my-3">
                 <input
                   type="text"
                   min="5"
