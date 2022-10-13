@@ -59,7 +59,7 @@ $("form").on("submit", function (e) {
   }
   getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
     .done(function (response, textStatus, http) {
-      if (http.status == 201) {
+      if (http.status === 201) {
         $("#modal-form").modal("hide"); //show, hide, toggle
         getAjax("GET", URL + "/all", "").done(function (response) {
           filledTable(response);
@@ -89,7 +89,7 @@ function listeners() {
   $(".btn-delete").on("click", function(e) {
     let id = e.target.value;
     getAjax("DELETE", URL + `/${id}`, "").done(function (response, textStatus, http) {
-      if(http.status == 204) {    
+      if(http.status === 204) {
         getAjax("GET", URL + "/all", "").done(function (response) {
           filledTable(response);
         })
