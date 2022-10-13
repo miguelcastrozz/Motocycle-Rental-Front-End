@@ -1,11 +1,15 @@
-const URL = "http://130.162.39.53/api/Motorbike";
+const URL = "http://130.162.39.53/api/";
 let isUpdated = false;
 let id = null;
 
 $(document).ready(function () {
-  getAjax("GET", URL + "/all", "")
+  getAjax("GET", URL + "Motorbike/all", "")
     .done(function (response) {
       filledTable(response);
+    });
+  getAjax("GET", URL + "Category/all", "")
+    .done(function (response) {
+      filledSelectCategory(response);
     });
 });
 
@@ -53,15 +57,15 @@ $("form").on("submit", function (e) {
     },
   };
   if(isUpdated){
-    url+= URL + '/update' //PUT
+    url+= URL + 'Motorbike/update' //PUT
   }else{
-    url+= URL + '/save' //POST
+    url+= URL + 'Motorbike/save' //POST
   }
   getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
     .done(function (response, textStatus, http) {
       if (http.status === 201) {
         $("#modal-form").modal("hide"); //show, hide, toggle
-        getAjax("GET", URL + "/all", "").done(function (response) {
+        getAjax("GET", URL + "Motorbike/all", "").done(function (response) {
           filledTable(response);
         })
       }
@@ -80,7 +84,7 @@ function listeners() {
     isUpdated = true;
     $(".modal-title").html("Actualizar motocicleta")
     let id = e.target.value;
-    getAjax("GET", URL + `/${id}`, "").done(function (response) {
+    getAjax("GET", URL + `Motorbike/${id}`, "").done(function (response) {
       setDataToForm(response);
     });
     $("#modal-form").modal("show"); //show, hide, toggle
@@ -88,9 +92,9 @@ function listeners() {
 
   $(".btn-delete").on("click", function(e) {
     let id = e.target.value;
-    getAjax("DELETE", URL + `/${id}`, "").done(function (response, textStatus, http) {
+    getAjax("DELETE", URL + `Motorbike/${id}`, "").done(function (response, textStatus, http) {
       if(http.status === 204) {
-        getAjax("GET", URL + "/all", "").done(function (response) {
+        getAjax("GET", URL + "Motorbike/all", "").done(function (response) {
           filledTable(response);
         })
       }
@@ -105,4 +109,13 @@ function setDataToForm(data){
   $("#year").val(data.year);
   $("#description").val(data.description);
   $("#category").val(data.category.id);
+}
+
+function filledSelectCategory(data){
+  for(let i = 0; i < data.length; i++){
+    $('#category').append($('<option>', { 
+      value: data[i].id,
+      text : data[i].name 
+    }));
+  }
 }
