@@ -141,4 +141,5 @@ function fillSelectYear() {
 
 $("#modal-form").on("hidden.bs.modal", function(){
   setDataEmpty();
+  $("form").removeClass("was-validated");
 })
