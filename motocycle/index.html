@@ -79,50 +79,79 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form class="needs-validation" novalidate>
               <div class="form-floating mb-3">
                 <input
                   type="text"
+                  minlength="5"
+                  maxlength="45"
                   class="form-control"
                   id="name"
                   name="name"
                   placeholder=""
+                  required
                 />
                 <label for="name">Nombre</label>
+                <div class="invalid-feedback">
+                  Por favor completa este campo (Caracteres: 5-45)
+                </div>
               </div>
               <div class="form-floating mb-3">
                 <input
                   type="text"
+                  minlength="5"
+                  maxlength="45"
                   class="form-control"
                   id="brand"
                   name="brand"
                   placeholder=""
+                  required
                 />
                 <label for="brand">Marca</label>
+                <div class="invalid-feedback">
+                  Por favor completa este campo (Caracteres: 5-45)
+                </div>
               </div>
               <div class="form-floating mb-3">
                 <input
                   type="number"
+                  min="2000"
+                  max="9999"
                   class="form-control"
                   id="year"
                   name="year"
                   placeholder=""
+                  required
                 />
                 <label for="year">Año</label>
+                <div class="invalid-feedback">
+                  Por favor completa este campo (Año 2000-9999)
+                </div>
               </div>
               <div class="form-floating mb-3">
                 <input
                   type="text"
+                  min="5"
+                  maxlength="250"
                   class="form-control"
                   id="description"
                   name="description"
                   placeholder=""
+                  required
                 />
                 <label for="description">Descripción</label>
+                <div class="invalid-feedback">
+                  Por favor completa este campo (Caracteres: 5-250)
+                </div>
               </div>
-              <select class="form-select mb-1" id="category">
-                <option selected value>Selecciona una categoria</option>
-              </select>
+              <div>
+                <select class="form-select mb-1" id="category" required>
+                  <option selected value>Selecciona una categoria</option>
+                </select>
+                <div class="invalid-feedback">
+                  Por favor selecciona una opción.
+                </div>
+              </div>
               <div class="d-flex justify-content-center py-1">
                 <button type="submit" class="btn btn-primary mt-1">Guardar</button>
               </div>
@@ -138,6 +167,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="../main.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
