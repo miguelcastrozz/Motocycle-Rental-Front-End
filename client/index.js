@@ -7,6 +7,7 @@ $(document).ready(function () {
       .done(function (response) {
         filledTable(response);
       });
+      fillSelectAge();
 });
 
 function getAjax(type, url, data) {
@@ -92,6 +93,15 @@ function listeners() {
         }
       });
     })
+}
+
+function fillSelectAge() {
+  for (let i = 18; i <= 70; i++) {
+    $("#age").append($('<option>', {
+      value: i,
+      text : i
+    }))
+  }
 }
 
 function setDataToForm(data){
