@@ -19,6 +19,7 @@ function getAjax(type, url, data) {
     });
 }
 
+
 function filledTable(data) {
     let tBodyContent = "";
     for (let i = 0; i < data.length; i++) {
@@ -100,3 +101,15 @@ function setDataToForm(data){
     $("#password").val(data.password);
     $("#age").val(data.age);
 }
+
+function setDataEmpty(){
+  id = null;
+  $("#name").val("");
+  $("#email").val("");
+  $("#password").val("");
+  $("#age").val("");
+}
+
+$("#modal-form").on("hidden.bs.modal", function(){
+  setDataEmpty();
+})
