@@ -1,12 +1,20 @@
-const URL = "http://130.162.39.53/api/Reservation";
+const URL = "http://130.162.39.53/api/";
 let isUpdated = false;
 let id = null;
 
 $(document).ready(function () {
-  getAjax("GET", URL + "/all", "")
-    .done(function (response) {
-      filledTable(response);
-    });
+    getAjax("GET", URL + "Reservation/all", "")
+        .done(function (response) {
+            filledTable(response);
+        });
+    getAjax("GET", URL + "Motorbike/all", "")
+        .done(function (response) {
+            filledSelect(response, '#motorbike');
+        });
+    getAjax("GET", URL + "Client/all", "")
+        .done(function (response) {
+            filledSelect(response, '#client');
+        });
 });
 
 function getAjax(type, url, data) {
@@ -55,16 +63,16 @@ $("form").on("submit", function (e) {
         score: $("#score").val(),
     };
     if (isUpdated) {
-        url += URL + '/update'
+        url += URL + 'Reservation/update'
     } else {
-        url += URL + '/save'
+        url += URL + 'Reservation/save'
     }
     getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
         .done(function (response, textStatus, http) {
             if (http.status === 201) {
                 $("#modal-form").modal("hide");
-                getAjax("GET", URL + "/all", "").done(function (response) {
-                        filledTable(response);
+                getAjax("GET", URL + "Reservation/all", "").done(function (response) {
+                    filledTable(response);
                 });
             }
         });
@@ -82,16 +90,16 @@ function listeners() {
         isUpdated = true;
         $(".modal-title").html("Actualizar reserva")
         let id = e.target.value;
-        getAjax("GET", URL + `/${id}`, "").done(function (response) {
-                setDataForm(response);
-            });
-                $("#modal-form").modal("show");
+        getAjax("GET", URL + `Reservation/${id}`, "").done(function (response) {
+            setDataForm(response);
+        });
+        $("#modal-form").modal("show");
     });
     $(".btn-delete").on("click", function (e) {
         id = e.target.value;
-        getAjax("DELETE", URL + `/${id}`, "").done(function (response, textStatus, http) {
+        getAjax("DELETE", URL + `Reservation/${id}`, "").done(function (response, textStatus, http) {
             if (http.status === 204) {
-                getAjax("GET", URL + "/all", "").done(function (response) {
+                getAjax("GET", URL + "Reservation/all", "").done(function (response) {
                     filledTable(response);
                 });
             }
@@ -107,3 +115,12 @@ function setDataForm(data) {
     $("#motorbike").val(data.motorbike.id);
     $("#score").val(data.score);
 }
+
+function filledSelect(data, select){
+    for(let i = 0; i < data.length; i++){
+      $(`${select}`).append($('<option>', { 
+        value: data[i].id,
+        text : data[i].name 
+      }));
+    }
+  }
