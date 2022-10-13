@@ -15,6 +15,11 @@ $(document).ready(function () {
         .done(function (response) {
             filledSelect(response, '#client');
         });
+
+    getAjax("GET", URL + "Score/all", "")
+        .done(function (response) {
+            filledSelect(response, '#score');
+        });
 });
 
 function getAjax(type, url, data) {
@@ -36,10 +41,10 @@ function filledTable(data) {
         tBodyContent += `<td>${data[i].devolutionDate}</td>`;
         tBodyContent += `<td>${data[i].client.name}</td>`;
         tBodyContent += `<td>${data[i].motorbike.name}</td>`;
-        tBodyContent += `<td>${data[i].score}</td>`;
+        tBodyContent += `<td>${data[i].score.name}</td>`;
         tBodyContent += "<td>";
-        tBodyContent += `<button type='button' class='btn btn-primary btn-update' value='${data[i].id}'>Actualizar</button>`;
-        tBodyContent += `<button type='button' class='btn btn-danger btn-delete' value='${data[i].id}'>Eliminar</button>`;
+        tBodyContent += `<button type='button' class='btn btn-primary btn-update' value='${data[i].idReservation}'>Actualizar</button>`;
+        tBodyContent += `<button type='button' class='btn btn-danger btn-delete' value='${data[i].idReservation}'>Eliminar</button>`;
         tBodyContent += "</td>";
         tBodyContent += "</tr>";
     }
@@ -51,16 +56,18 @@ $("form").on("submit", function (e) {
     let url = '';
     e.preventDefault();
     let data = {
-        id: id,
+        idReservation: id,
         startDate: $("#startDate").val(),
         devolutionDate: $("#devolutionDate").val(),
         client: {
-            id: $("#client").val(),
+            idClient: $("#client").val(),
         },
         motorbike: {
             id: $("#motorbike").val(),
         },
-        score: $("#score").val(),
+        score: {
+            id: $("#score").val()
+        }
     };
     if (isUpdated) {
         url += URL + 'Reservation/update'
@@ -108,19 +115,19 @@ function listeners() {
 }
 
 function setDataForm(data) {
-    id = data.id;
+    id = data.idReservation;
     $("#startDate").val(data.startDate);
     $("#devolutionDate").val(data.devolutionDate);
-    $("#client").val(data.client.id);
+    $("#client").val(data.client.idClient);
     $("#motorbike").val(data.motorbike.id);
-    $("#score").val(data.score);
+    $("#score").val(data.score.id);
 }
 
-function filledSelect(data, select){
-    for(let i = 0; i < data.length; i++){
-      $(`${select}`).append($('<option>', { 
-        value: data[i].id,
-        text : data[i].name 
-      }));
+function filledSelect(data, select) {
+    for (let i = 0; i < data.length; i++) {
+        $(`${select}`).append($('<option>', {
+            value: (select === "#client") ? data[i].idClient : data[i].id,
+            text: data[i].name
+        }));
     }
-  }
+}
