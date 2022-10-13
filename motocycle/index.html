@@ -48,13 +48,7 @@
     </nav>
     <div class="container">
       <div class="d-flex justify-content-center py-1">
-        <button
-          class="btn btn-primary mt-1"
-          data-bs-toggle="modal"
-          data-bs-target="#modal-form"
-        >
-          Agregar Nueva Motocicleta
-        </button>
+        <button class="btn btn-primary mt-1 btn-modal">Agregar nueva motocicleta</button>
       </div>
       <table class="table">
         <thead>
@@ -68,20 +62,7 @@
             <th scope="col">Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Yamaha FZ-16</td>
-            <td>Yamaha</td>
-            <td>2015</td>
-            <td>Motocicleta deportiva</td>
-            <td>Usada</td>
-            <td>
-              <button type="button" class="btn btn-primary">Actualizar</button>
-              <button type="button" class="btn btn-danger">Eliminar</button>
-            </td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
     <!--Modal(Añadir)-->
@@ -89,7 +70,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5">Agregar Motocicleta</h1>
+            <h1 class="modal-title fs-5"></h1>
             <button
               type="button"
               class="btn-close"
@@ -113,15 +94,15 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="marca"
-                  name="marca"
+                  id="brand"
+                  name="brand"
                   placeholder=""
                 />
-                <label for="marca">Marca</label>
+                <label for="brand">Marca</label>
               </div>
               <div class="form-floating mb-3">
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="year"
                   name="year"
@@ -141,7 +122,7 @@
               </div>
               <div class="form-floating mb-3">
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="category"
                   name="category"
@@ -150,9 +131,7 @@
                 <label for="category">Categoria</label>
               </div>
               <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary">
-                  Guardar
-                </button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
               </div>
             </form>
           </div>
@@ -160,6 +139,12 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="index.js"></script>
   </body>
 </html>
