@@ -111,6 +111,15 @@ function setDataToForm(data){
   $("#category").val(data.category.id);
 }
 
+function setDataEmpty(){
+  id = null;
+  $("#name").val("");
+  $("#brand").val("");
+  $("#year").val("");
+  $("#description").val("");
+  $("#category").val("");
+}
+
 function filledSelectCategory(data){
   for(let i = 0; i < data.length; i++){
     $('#category').append($('<option>', { 
@@ -119,3 +128,7 @@ function filledSelectCategory(data){
     }));
   }
 }
+
+$("#modal-form").on("hidden.bs.modal", function(){
+  setDataEmpty();
+})
