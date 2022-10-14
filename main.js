@@ -20,3 +20,20 @@
     );
   });
 })();
+
+export function validate(data) {
+  const email = /^[0-9a-zA-ZÀ-ÿ._\u00f1\u00d1]+@\w+.(edu|com|co|gov).?(edu|com|co|gov)?$/;
+  let response = true;
+  $.each(JSON.parse(data), function (key, value) {
+    if (response !== false) {
+      if(key == "brand" || key == "name" || key == "password"){
+        response = (value.length >= 5 && value.length <= 45);
+      }else if(key == "description" || key == "messageText"){
+        response = (value.length >= 5 && value.length <= 250 );
+      }else if(key == "email"){
+        response = (value.length >= 10 && value.length <= 45) ? email.test(value) : false;
+      }
+    }
+  });
+  return response;
+}
