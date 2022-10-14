@@ -22,22 +22,53 @@
 })();
 
 export function validate(data) {
-  const email = /^[0-9a-zA-ZÀ-ÿ._\u00f1\u00d1]+@\w+?[.](edu|com|co|gov)?[.]?(edu|com|co|gov)?$/;
+  const email =
+    /^[0-9a-zA-ZÀ-ÿ._\u00f1\u00d1]+@\w+?[.](edu|com|co|gov)?[.]?(edu|com|co|gov)?$/;
   let response = true;
   $.each(JSON.parse(data), function (key, value) {
     if (response !== false) {
-      if(key == "brand" || key == "name" || key == "password"){
-        response = (value.length >= 5 && value.length <= 45);
-      }else if(key == "description" || key == "messageText"){
-        response = (value.length >= 5 && value.length <= 250 );
-      }else if(key == "email"){
-        if(value.slice(-1) != "."){
-          response = (value.length >= 10 && value.length <= 45) ? email.test(value) : false;
-        }else{
+      if (key == "brand" || key == "name" || key == "password") {
+        response = value.length >= 5 && value.length <= 45;
+      } else if (key == "description" || key == "messageText") {
+        response = value.length >= 5 && value.length <= 250;
+      } else if (key == "email") {
+        if (value.slice(-1) != ".") {
+          response =
+            value.length >= 10 && value.length <= 45
+              ? email.test(value)
+              : false;
+        } else {
           response = false;
         }
       }
     }
   });
   return response;
+}
+
+export function loadDataTable() {
+  $(".table").DataTable({
+    dom: "Bfrtip",
+    paging: true,
+    lengthChange: true,
+    searching: true,
+    ordering: true,
+    info: true,
+    autoWidth: true,
+    language: {
+      url: "../resources/Spanish.json", //Idioma
+    },
+    buttons: [
+      "print",
+      "excel",
+      {
+        extend: "pdfHtml5",
+        orientation: "landscape",
+        pageSize: "LETTER",
+      },
+    ],
+    pagingType: "full_numbers",
+    //"responsive": true, //Conflicto con la funcion on click
+    stateSave: true, //Guardar la configuracion del usuario
+  });
 }
