@@ -1,3 +1,5 @@
+import { validate } from "../main.js"
+
 const URL = "http://130.162.39.53/api/Client";
 let isUpdated = false;
 let id = null;
@@ -54,7 +56,8 @@ $("form").on("submit", function (e) {
     }else{
       url+= URL + '/save' //POST
     }
-    getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
+    if(validate(JSON.stringify(data))){
+      getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
       .done(function (response, textStatus, http) {
         if (http.status === 201) {
           $("#modal-form").modal("hide"); //show, hide, toggle
@@ -63,6 +66,7 @@ $("form").on("submit", function (e) {
           })
         }
       });
+    }
 });
 
 $(".btn-modal").on("click", function(){
