@@ -1,4 +1,4 @@
-import { validate } from "../main.js"
+import { loadDataTable, validate } from "../main.js"
 
 const URL = "http://130.162.39.53/api/";
 let isUpdated = false;
@@ -8,6 +8,8 @@ $(document).ready(function () {
   getAjax("GET", URL + "Message/all", "")
     .done(function (response) {
       filledTable(response);
+    }).always(function(){
+      loadDataTable();
     });
 });
 
@@ -54,9 +56,7 @@ $("form").on("submit", function (e) {
     .done(function (response, textStatus, http) {
       if (http.status == 201) {
         $("#modal-form").modal("hide"); //show, hide, toggle
-        getAjax("GET", URL + "Message/all", "").done(function (response) {
-          filledTable(response);
-        })
+        location.reload();
       }
     });
   }
@@ -84,9 +84,7 @@ function listeners() {
     let id = e.target.value;
     getAjax("DELETE", URL + `Message/${id}`, "").done(function (response, textStatus, http) {
       if(http.status == 204) {    
-        getAjax("GET", URL + "Message/all", "").done(function (response) {
-          filledTable(response);
-        })
+        location.reload();
       }
     });
   })

@@ -1,3 +1,5 @@
+import { loadDataTable } from "../main";
+
 const URL = "http://130.162.39.53/api/";
 let isUpdated = false;
 let id = null;
@@ -6,6 +8,8 @@ $(document).ready(function () {
     getAjax("GET", URL + "Reservation/all", "")
         .done(function (response) {
             filledTable(response);
+        }).always(function(){
+            loadDataTable();
         });
     getAjax("GET", URL + "Motorbike/all", "")
         .done(function (response) {
@@ -79,9 +83,7 @@ $("form").on("submit", function (e) {
         .done(function (response, textStatus, http) {
             if (http.status === 201) {
                 $("#modal-form").modal("hide");
-                getAjax("GET", URL + "Reservation/all", "").done(function (response) {
-                    filledTable(response);
-                });
+                location.reload();
             }
         });
 })
@@ -107,9 +109,7 @@ function listeners() {
         id = e.target.value;
         getAjax("DELETE", URL + `Reservation/${id}`, "").done(function (response, textStatus, http) {
             if (http.status === 204) {
-                getAjax("GET", URL + "Reservation/all", "").done(function (response) {
-                    filledTable(response);
-                });
+                location.reload();
             }
         });
     });
