@@ -1,3 +1,5 @@
+import { validate } from "../main.js"
+
 const URL = "http://130.162.39.53/api/Client";
 let isUpdated = false;
 let id = null;
@@ -7,6 +9,7 @@ $(document).ready(function () {
       .done(function (response) {
         filledTable(response);
       });
+      fillSelectAge();
 });
 
 function getAjax(type, url, data) {
@@ -53,7 +56,8 @@ $("form").on("submit", function (e) {
     }else{
       url+= URL + '/save' //POST
     }
-    getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
+    if(validate(JSON.stringify(data))){
+      getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
       .done(function (response, textStatus, http) {
         if (http.status === 201) {
           $("#modal-form").modal("hide"); //show, hide, toggle
@@ -62,6 +66,7 @@ $("form").on("submit", function (e) {
           })
         }
       });
+    }
 });
 
 $(".btn-modal").on("click", function(){
@@ -94,6 +99,15 @@ function listeners() {
     })
 }
 
+function fillSelectAge() {
+  for (let i = 18; i <= 70; i++) {
+    $("#age").append($('<option>', {
+      value: i,
+      text : i
+    }))
+  }
+}
+
 function setDataToForm(data){
     id = data.idClient;
     $("#name").val(data.name);
@@ -112,4 +126,5 @@ function setDataEmpty(){
 
 $("#modal-form").on("hidden.bs.modal", function(){
   setDataEmpty();
+  $("form").removeClass("was-validated");
 })

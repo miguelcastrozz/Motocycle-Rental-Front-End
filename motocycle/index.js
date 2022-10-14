@@ -1,3 +1,5 @@
+import { validate } from "../main.js"
+
 const URL = "http://130.162.39.53/api/";
 let isUpdated = false;
 let id = null;
@@ -11,6 +13,7 @@ $(document).ready(function () {
     .done(function (response) {
       filledSelectCategory(response);
     });
+  fillSelectYear();
 });
 
 function getAjax(type, url, data) {
@@ -61,15 +64,17 @@ $("form").on("submit", function (e) {
   }else{
     url+= URL + 'Motorbike/save' //POST
   }
-  getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
-    .done(function (response, textStatus, http) {
-      if (http.status === 201) {
-        $("#modal-form").modal("hide"); //show, hide, toggle
-        getAjax("GET", URL + "Motorbike/all", "").done(function (response) {
-          filledTable(response);
-        })
-      }
-    });
+  if(validate(JSON.stringify(data))){
+    getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
+      .done(function (response, textStatus, http) {
+        if (http.status === 201) {
+          $("#modal-form").modal("hide"); //show, hide, toggle
+          getAjax("GET", URL + "Motorbike/all", "").done(function (response) {
+            filledTable(response);
+          })
+        }
+      });
+  }
 });
 
 $(".btn-modal").on("click", function(){
@@ -129,6 +134,16 @@ function filledSelectCategory(data){
   }
 }
 
+function fillSelectYear() {
+  for (let i = 2000; i <= 2023; i++) {
+    $("#year").append($('<option>', {
+      value: i,
+      text : i
+    }))
+  }
+}
+
 $("#modal-form").on("hidden.bs.modal", function(){
   setDataEmpty();
+  $("form").removeClass("was-validated");
 })
