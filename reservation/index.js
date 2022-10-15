@@ -1,4 +1,4 @@
-import { loadDataTable } from "../main";
+import { loadDataTable } from "../main.js";
 
 const URL = "http://130.162.39.53/api/";
 let isUpdated = false;
@@ -42,7 +42,7 @@ function filledTable(data) {
         tBodyContent += "<tr>";
         tBodyContent += `<th scope="row">${i + 1}</th>`;
         tBodyContent += `<td>${data[i].startDate}</td>`;
-        tBodyContent += `<td>${data[i].devolutionDate}</td>`;
+        tBodyContent += `<td>${data[i].devolutionDate.slice(0,10)}</td>`;
         tBodyContent += `<td>${data[i].client.name}</td>`;
         tBodyContent += `<td>${data[i].motorbike.name}</td>`;
         tBodyContent += `<td>${data[i].score.name}</td>`;
@@ -79,13 +79,15 @@ $("form").on("submit", function (e) {
     } else {
         url += URL + 'Reservation/save'
     }
-    getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
+    if(e.target.checkValidity()){
+        getAjax(isUpdated ? "PUT" : "POST", url, JSON.stringify(data))
         .done(function (response, textStatus, http) {
             if (http.status === 201) {
                 $("#modal-form").modal("hide");
                 location.reload();
             }
         });
+    }
 })
 
 $(".btn-modal").on("click", function () {
